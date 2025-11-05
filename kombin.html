@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benim Kombinim</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+/* Genel stil */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+}
+
+/* Başlık */
+h1 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  font-size: 2.5em;
+}
+
+/* Kutular grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  width: 90%;
+  max-width: 1000px;
+}
+
+/* Kutular */
+.box {
+  background-color: #fff;
+  border-radius: 15px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #444;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+.box:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Popup */
+#popup {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  display:none;
+  z-index: 999;
+}
+#popup img {
+  max-width:90%;
+  max-height:80%;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Mobil uyumlu */
+@media(max-width:600px){
+  .box { height: 100px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<h1>Zeynep hanımın günlük kombinleri</h1>
+
+<div class="grid">
+  <div class="box" onclick="showDay('pazartesi')">Pazartesi</div>
+  <div class="box" onclick="showDay('sali')">Salı</div>
+  <div class="box" onclick="showDay('carsamba')">Çarşamba</div>
+  <div class="box" onclick="showDay('persembe')">Perşembe</div>
+  <div class="box" onclick="showDay('cuma')">Cuma</div>
+  <div class="box" onclick="showDay('cumartesi')">Cumartesi</div>
+  <div class="box" onclick="showDay('pazar')">Pazar</div>
+</div>
+
+<div id="popup" onclick="closePopup()">
+  <img id="popup-img" src="" alt="Görsel">
+</div>
+
+<script>
+const gallery = {
+  pazartesi: ['images/pazartesi1.jpg'],
+  sali: ['images/sali1.jpg'],
+  carsamba: ['images/carsamba1.jpg'],  
+  persembe: ['images/persembe1.jpg'],
+  cuma: ['images/cuma1.jpg'],
+  cumartesi: ['images/cumartesi1.jpg'],
+  pazar: ['images/pazar1.jpg']
+};
+
+function showDay(day){
+  if(gallery[day].length === 0) return;
+  document.getElementById('popup-img').src = gallery[day][0];
+  document.getElementById('popup').style.display = 'flex';
+}
+
+function closePopup(){
+  document.getElementById('popup').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
